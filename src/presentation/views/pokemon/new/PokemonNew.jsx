@@ -4,7 +4,7 @@ import {AiOutlinePlus} from "react-icons/ai";
 
 const PokemonNew = (props) => {
     return (
-        <Button text="Nuevo" icon={<AiOutlinePlus size={20} color={"#fff"}/>}/>
+        <Button onClick={props.onClick} text="Nuevo" icon={<AiOutlinePlus size={20} color={"#fff"}/>}/>
     );
 };
 

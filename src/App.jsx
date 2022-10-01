@@ -5,24 +5,22 @@ import PokemonFiler from './presentation/views/pokemon/filter/PokemonFilter';
 import PokemonNew from './presentation/views/pokemon/new/PokemonNew';
 import Title from './presentation/components/title';
 
-
-
-
+import {useEffect, useState} from 'react';
+import PokemonListViewModel from './presentation/views/pokemon/list/ViewModel';
+import PokemonNewViewModel from './presentation/views/pokemon/new/viewModel';
 
 
 function App() {
-
-  const pokemonData = [
-    {
-        id: 1,
-        name: 'bulbasaur',
-        image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
-        attack: 49,
-        defense: 49
-    }
-  ];
+  const {getPokemonList, pokemonList, isLoadingPokemonList, errorPokemonList} = PokemonListViewModel();
+  const {handleSavePokemon, handleCancelCreatePokemon, newPokemon, isCreatingPokemon, handleCreatePokemon} = PokemonNewViewModel();
+  
+  useEffect(() => {
+    getPokemonList();
+  }, [isCreatingPokemon]);
+  
 
   return (
+
     <div className="App">
 
       <div className="title" data-testid="general-title" >
@@ -30,13 +28,20 @@ function App() {
       </div>
 
       <div className="filter-new">
-      <PokemonFiler />
-      <PokemonNew />
+        <PokemonFiler />
+        <PokemonNew onClick={handleCreatePokemon} />
+      </div>
+
+      <div>
+        {errorPokemonList && <div data-testid="error-pokemon-list">Error al cargar la lista de pokemon</div>}
+        {isLoadingPokemonList && <div data-testid="loading-pokemon-list">Cargando lista de pokemon</div>}
+        {!isLoadingPokemonList && !errorPokemonList && <PokemonTable pokemonData={pokemonList} />}
       </div>
       
-      <PokemonTable pokemonData={pokemonData} />
-      <PokemonNewEdit pokemon={pokemonData[0]} onChange={()=>{}} />
 
+      <div>
+        {isCreatingPokemon && <PokemonNewEdit pokemon={newPokemon} onSave={handleSavePokemon} onCancel={handleCancelCreatePokemon} />}
+      </div>
     </div>
   );
 }
