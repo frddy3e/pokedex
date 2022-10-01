@@ -1,0 +1,57 @@
+import React from "react";
+import PropTypes from "prop-types"
+
+/**
+ * A component that renders a table, with a header and a body. If no rows are provided, a single row with a message is rendered.
+ * @component
+ * @example
+ * const headers = ['Nombre', 'Imagen', 'Ataque', 'Defensa', 'Acciones'];
+ * const rows = [];
+ * return (
+ *  <Table headers={headers} rows={rows} />
+ * )
+ */
+const Table = (props) => {
+    const {headers, rows} = props;
+
+    return <div data-testid="table">
+        <table>
+            <thead data-testid="table-header">
+                <tr data-testid="table-header-row">
+                    {headers.map((header, index) => <th key={index}>{header}</th>)}
+                </tr>
+            </thead>
+            <tbody>
+                {rows.length>0?
+                rows.map((row, index) => 
+                <tr data-testid="table-body-row" key={index}>
+                    {row.map((cell, index) => <td key={index}>{cell}</td>)}
+                </tr>):
+                <tr data-testid="table-body-row">
+                    <td colSpan={headers.length}>No hay datos</td>
+                </tr>}
+            </tbody>
+        </table>
+        
+    </div>;
+};
+
+
+Table.propTypes = {
+    /**
+     * The table headers
+     */
+    headers: PropTypes.array.isRequired,
+    /**
+     * The table rows
+     */
+    rows: PropTypes.array.isRequired
+};
+
+Table.defaultProps = {
+    headers: [],
+    rows: []
+};
+
+
+export default Table;
