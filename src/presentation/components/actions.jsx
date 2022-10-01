@@ -3,6 +3,8 @@ import PropTypes from "prop-types"
 import {AiOutlineEdit} from "react-icons/ai";
 import {AiTwotoneDelete} from "react-icons/ai";
 
+import ActionsStyle from "./actions.module.css";
+
 /**
  * Actions component: renders a list of actions buttons (Edit and Delete).
  * @component
@@ -13,12 +15,12 @@ import {AiTwotoneDelete} from "react-icons/ai";
  */
 const Actions = (props) => {
     const {onEdit, onDelete} = props;
-    return <div data-testid="actions">
-        <button onClick={onEdit} data-testid="actions-btn-edit">
-            <AiOutlineEdit />
+    return <div data-testid="actions" className={ActionsStyle.actions}>
+        <button onClick={onEdit} data-testid="actions-btn-edit" className={ActionsStyle.button}>
+            <AiOutlineEdit size={20} className={ActionsStyle.icon}/>
         </button>
-        <button onClick={onDelete} data-testid="actions-btn-delete">
-            <AiTwotoneDelete />
+        <button onClick={onDelete} data-testid="actions-btn-delete" className={ActionsStyle.button}>
+            <AiTwotoneDelete size={20} className={ActionsStyle.icon}/>
         </button>
     </div>
 }

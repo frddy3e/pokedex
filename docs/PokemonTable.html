@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Table</title>
+    <title>JSDoc: Class: PokemonTable</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Table</h1>
+    <h1 class="page-title">Class: PokemonTable</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Table<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>PokemonTable<span class="signature">()</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,7 +41,7 @@
     
 
     
-    <h4 class="name" id="Table"><span class="type-signature"></span>new Table<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="PokemonTable"><span class="type-signature"></span>new PokemonTable<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -49,7 +49,7 @@
 
 
 <div class="description">
-    <p>A component that renders a table, with a header and a body. If no rows are provided, a single row with a message is rendered.</p>
+    <p>The pokemon table component, which renders a table with the pokemon data.</p>
 </div>
 
 
@@ -93,7 +93,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_table.jsx.html">components/table.jsx</a>, <a href="components_table.jsx.html#line14">line 14</a>
+        <a href="views_pokemon_list_pokemonTable.jsx.html">views/pokemon/list/pokemonTable.jsx</a>, <a href="views_pokemon_list_pokemonTable.jsx.html#line22">line 22</a>
     </li></ul></dd>
     
 
@@ -124,10 +124,17 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const headers = ['Nombre', 'Imagen', 'Ataque', 'Defensa', 'Acciones'];
-const rows = [];
+    <pre class="prettyprint"><code>const pokemonData = [
+   {
+     id: 1,
+     name: 'bulbasaur',
+     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
+     attack: 49,
+     defense: 49
+   }
+];
 return (
- &lt;Table headers={headers} rows={rows} />
+&lt;PokemonTable pokemonData={pokemonData} />
 )</code></pre>
 
 

@@ -15,6 +15,9 @@ import PropTypes from "prop-types"
  *      defense: 49
  *    }
  * ];
+ * return (
+ * <PokemonTable pokemonData={pokemonData} />
+ * )
  */
 const PokemonTable = (props) => {
     const {pokemonData} = props;
