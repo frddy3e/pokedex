@@ -23,7 +23,7 @@ const Button = (props) => {
 };
 
 Button.defaultProps = {
-    disabled: true
+    disabled: false
 }
 
 Button.propTypes = {

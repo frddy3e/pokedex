@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Styles from "./inputText.module.css";
+import Styles from './inputTextIcon.module.css';
 /**
  * A component to render a text input
  * @component
@@ -13,21 +13,21 @@ import Styles from "./inputText.module.css";
  * <InputText id={id} label={label} value={value} onChange={onChange} />
  * )
  */
-const InputText = (props) => {
-    const {id, label, value, onChange, type, error} = props;
-    return <div data-testid="input-text">
-        <label htmlFor={id}>{label}</label>
-        <input id={id} type={type} value={value} onChange={onChange} className= {Styles.inputText} data-testid="input-text-input"/>
-        {error && <span data-testid="input-text-error">{error}</span>}
+const InputTextIcon = (props) => {
+    const {id, label, value, onChange, type, error, icon, placeholder} = props;
+    return <div data-testid="input-text-icon" className={Styles.inputTextIcon}>
+        {icon}
+        <input id={id} type={type} value={value} onChange={onChange} placeholder={placeholder} className= {Styles.inputText} data-testid="input-text-input-icon"/>
+        {error && <span data-testid="input-text-icon-error">{error}</span>}
     </div>
 };
 
 
-InputText.defaultProps = {
+InputTextIcon.defaultProps = {
     type: "text"
 };
 
-InputText.propTypes = {
+InputTextIcon.propTypes = {
     /**
      * The id of the input
      */
@@ -48,4 +48,4 @@ InputText.propTypes = {
 };
 
 
-export default InputText;
+export default InputTextIcon;

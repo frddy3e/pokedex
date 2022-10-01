@@ -26,7 +26,7 @@ const PokemonTable = (props) => {
     const rows = pokemonData.map((pokemon) => {
         return [
             pokemon.name,
-            <img src={pokemon.image} alt={pokemon.name} />,
+            <img src={pokemon.image} alt={pokemon.name} height={50} width={50}/>,
             pokemon.attack,
             pokemon.defense,
             <Actions onEdit={() => {}} onDelete={() => {}} />
