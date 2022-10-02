@@ -5,7 +5,6 @@ export function getAll(){
         try{
             const response = await fetch(REACT_APP_API_URL+ "?idAuthor=1");
             const data = await response.json();
-            console.log("get all", data);
             resolve(data);
         }catch(error){
             console.log("get all", error);
@@ -51,6 +50,7 @@ export function getOne(id){
 export function update(pokemon){
     return new Promise(async(resolve, reject) => {
         try {
+            console.log("update", pokemon);
             const response = await fetch(REACT_APP_API_URL + pokemon.id, {
                 method: 'PUT',
                 headers: {

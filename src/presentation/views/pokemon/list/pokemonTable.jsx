@@ -20,7 +20,7 @@ import PropTypes from "prop-types"
  * )
  */
 const PokemonTable = (props) => {
-    const {pokemonData} = props;
+    const {pokemonData, onEdit, onDelete} = props;
     const headers = ['Nombre', 'Imagen', 'Ataque', 'Defensa', 'Acciones'];
 
     const rows = pokemonData.map((pokemon) => {
@@ -29,7 +29,7 @@ const PokemonTable = (props) => {
             <img src={pokemon.image} alt={pokemon.name} height={50} width={50}/>,
             pokemon.attack,
             pokemon.defense,
-            <Actions onEdit={() => {}} onDelete={() => {}} />
+            <Actions onEdit={() => {onEdit(pokemon)}} onDelete={() => {onDelete(pokemon)}}/>
         ]
     });
 

@@ -24,6 +24,7 @@ const PokemonNewEdit = (props) => {
     const [attack, setAttack] = useState(props.pokemon.attack);
     const [defense, setDefense] = useState(props.pokemon.defense);
     const [image, setImage] = useState(props.pokemon.image);
+    const [pokemonId, setPokemonId] = useState(props.pokemon.id);
 
     const {onSave, onCancel} = props;
 
@@ -42,6 +43,7 @@ const PokemonNewEdit = (props) => {
         <div className={Style.buttonRow}>
         <Button text="Guardar" onClick={()=>{
             const savePokemon = {
+                id: pokemonId,
                 name: name,
                 attack: parseInt(attack),
                 defense: parseInt(defense),
@@ -50,6 +52,7 @@ const PokemonNewEdit = (props) => {
                 type: "undefined",
                 idAuthor: 1
             }
+            console.log("savePokemon");
             console.log(savePokemon);
             onSave(savePokemon);
         }} icon={<AiOutlineSave size={20} />} disabled={name === "" || attack === "" || defense === "" || image === ""}/>

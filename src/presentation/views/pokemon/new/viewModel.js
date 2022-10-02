@@ -6,7 +6,6 @@ export default function PokemonNewViewModel() {
     const [isCreatingPokemon, setIsCreatingPokemon] = useState(false);
 
     async function handleCreatePokemon() {
-        console.log("Press create");
         setIsCreatingPokemon(true);
         setNewPokemon({
             id: -1,
@@ -18,7 +17,6 @@ export default function PokemonNewViewModel() {
     }
 
     async function handleSavePokemon(pokemon) {
-        console.log("Saving pokemon");
         await createPokemonUseCase(pokemon);
         setIsCreatingPokemon(false);
     }
