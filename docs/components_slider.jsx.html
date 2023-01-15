@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/actions.jsx</title>
+    <title>JSDoc: Source: components/slider.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/actions.jsx</h1>
+    <h1 class="page-title">Source: components/slider.jsx</h1>
 
     
 
@@ -27,51 +27,62 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from "react";
-import PropTypes from "prop-types"
-import {AiOutlineEdit} from "react-icons/ai";
-import {AiTwotoneDelete} from "react-icons/ai";
-
-import ActionsStyle from "./actions.module.css";
+import Style from "./slider.module.css";
+import PropTypes from "prop-types";
 
 /**
- * Actions component: renders a list of actions buttons (Edit and Delete).
+ * This componet allows to render a slider to pick a value between a min and a max value.
  * @component
- * @example
- * return (
- * &lt;Actions />
- * )
  */
-const Actions = (props) => {
-    const {onEdit, onDelete} = props;
-    return &lt;div data-testid="actions" className={ActionsStyle.actions}>
-        &lt;button onClick={onEdit} data-testid="actions-btn-edit" className={ActionsStyle.button}>
-            &lt;AiOutlineEdit size={20} className={ActionsStyle.icon}/>
-        &lt;/button>
-        &lt;button onClick={onDelete} data-testid="actions-btn-delete" className={ActionsStyle.button}>
-            &lt;AiTwotoneDelete size={20} className={ActionsStyle.icon}/>
-        &lt;/button>
+const Slider = (props) => {
+  const { id, label, value, onChange, type, error, minValue, maxValue } = props;
+  return (
+    &lt;div data-testid="slider" className={Style.sliderAll}>
+      &lt;label htmlFor={id}>{label}&lt;/label>
+      &lt;p>{minValue}&lt;/p>
+      &lt;input
+        id={id}
+        type={type}
+        value={value}
+        onChange={onChange}
+        min={minValue}
+        max={maxValue}
+        className={Style.slider}
+        data-testid="slider-input"
+      />
+      {error &amp;&amp; &lt;span data-testid="slider-error">{error}&lt;/span>}
+      &lt;p>{maxValue}&lt;/p>
     &lt;/div>
-}
+  );
+};
 
-Actions.defaultProps = {
-    onEdit: () => {},
-    onDelete: () => {}
-}
+Slider.propTypes = {
+  /**
+   * The id of the input
+   * @type {string}
+   * @required
+   * @example
+   * const id = "name";
+   * return (
+   * &lt;Slider id={id} />
+   * )
+   * */
+  id: PropTypes.string,
+  /**
+   * The label to show in the input
+   * @type {string}
+   * @required
+   * @example
+   * const label = "Name";
+   * return (
+   * &lt;Slider label={label} />
+   * )
+   * */
+  label: PropTypes.string,
+};
 
-Actions.propTypes = {
-    /**
-     * The callback function to be called when the edit button is clicked
-     */
-    onEdit: PropTypes.func,
-    /**
-     * The callback function to be called when the delete button is clicked
-     */
-    onDelete: PropTypes.func
-}
-
-     
-
-export default Actions;</code></pre>
+export default Slider;
+</code></pre>
         </article>
     </section>
 

@@ -1,6 +1,6 @@
 import Table from "../../../components/table";
 import Actions from "../../../components/actions";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
 /**
  * The pokemon table component, which renders a table with the pokemon data.
@@ -15,38 +15,52 @@ import PropTypes from "prop-types"
  *      defense: 49
  *    }
  * ];
+ * const filter = '';
  * return (
- * <PokemonTable pokemonData={pokemonData} />
+ * <PokemonTable pokemonData={pokemonData} filter={filter} />
  * )
  */
 const PokemonTable = (props) => {
-    const {pokemonData, onEdit, onDelete} = props;
-    const headers = ['Nombre', 'Imagen', 'Ataque', 'Defensa', 'Acciones'];
+  const { pokemonData, filter, onEdit, onDelete } = props;
+  const headers = ["Nombre", "Imagen", "Ataque", "Defensa", "Acciones"];
 
-    const rows = pokemonData.map((pokemon) => {
-        return [
-            pokemon.name,
-            <img src={pokemon.image} alt={pokemon.name} height={50} width={50}/>,
-            pokemon.attack,
-            pokemon.defense,
-            <Actions onEdit={() => {onEdit(pokemon)}} onDelete={() => {onDelete(pokemon)}}/>
-        ]
-    });
+  const filteredPokemonData = pokemonData.filter((pokemon) => {
+    return pokemon.name.toLowerCase().includes(filter.toLowerCase());
+  });
 
-    return <div data-testid="pokemon-table">
-        <Table headers={headers} rows={rows}/>
-    </div>;
+  const rows = filteredPokemonData.map((pokemon) => {
+    return [
+      pokemon.name,
+      <img src={pokemon.image} alt={pokemon.name} height={50} width={50} />,
+      pokemon.attack,
+      pokemon.defense,
+      <Actions
+        onEdit={() => {
+          onEdit(pokemon);
+        }}
+        onDelete={() => {
+          onDelete(pokemon);
+        }}
+      />,
+    ];
+  });
+
+  return (
+    <div data-testid="pokemon-table">
+      <Table headers={headers} rows={rows} />
+    </div>
+  );
 };
 
 PokemonTable.propTypes = {
-    /**
-     * The pokemon data
-     */
-    pokemonData: PropTypes.array.isRequired
+  /**
+   * The pokemon data, which is an array of objects.
+   */
+  pokemonData: PropTypes.array.isRequired,
 };
 
 PokemonTable.defaultProps = {
-    pokemonData: []
+  pokemonData: [],
 };
 
 export default PokemonTable;

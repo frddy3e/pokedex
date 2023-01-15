@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/actions.jsx</title>
+    <title>JSDoc: Source: components/inputText.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/actions.jsx</h1>
+    <h1 class="page-title">Source: components/inputText.jsx</h1>
 
     
 
@@ -27,51 +27,68 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from "react";
-import PropTypes from "prop-types"
-import {AiOutlineEdit} from "react-icons/ai";
-import {AiTwotoneDelete} from "react-icons/ai";
-
-import ActionsStyle from "./actions.module.css";
-
+import PropTypes from "prop-types";
+import Styles from "./inputText.module.css";
 /**
- * Actions component: renders a list of actions buttons (Edit and Delete).
+ * A component to render a text input
  * @component
  * @example
+ * const id = "name";
+ * const label = "Name";
+ * const value = "Bulbasaur";
+ * const onChange = () => {};
  * return (
- * &lt;Actions />
+ * &lt;InputText
+ * id={id}
+ * label={label}
+ * value={value}
+ * onChange={onChange}
+ * type="text"
+ * error="Error"
+ * />
  * )
  */
-const Actions = (props) => {
-    const {onEdit, onDelete} = props;
-    return &lt;div data-testid="actions" className={ActionsStyle.actions}>
-        &lt;button onClick={onEdit} data-testid="actions-btn-edit" className={ActionsStyle.button}>
-            &lt;AiOutlineEdit size={20} className={ActionsStyle.icon}/>
-        &lt;/button>
-        &lt;button onClick={onDelete} data-testid="actions-btn-delete" className={ActionsStyle.button}>
-            &lt;AiTwotoneDelete size={20} className={ActionsStyle.icon}/>
-        &lt;/button>
+const InputText = (props) => {
+  const { id, label, value, onChange, type, error } = props;
+  return (
+    &lt;div data-testid="input-text">
+      &lt;label htmlFor={id}>{label}&lt;/label>
+      &lt;input
+        id={id}
+        type={type}
+        value={value}
+        onChange={onChange}
+        className={Styles.inputText}
+        data-testid="input-text-input"
+      />
+      {error &amp;&amp; &lt;span data-testid="input-text-error">{error}&lt;/span>}
     &lt;/div>
-}
+  );
+};
 
-Actions.defaultProps = {
-    onEdit: () => {},
-    onDelete: () => {}
-}
+InputText.propTypes = {
+  /**
+   * The id of the input
+   */
+  id: PropTypes.string,
+  /**
+   * The label to show in the input
+   */
+  label: PropTypes.string,
+  /**
+   * The value of the input
+   */
+  value: PropTypes.string,
+  /**
+   * The function to call when the user changes the value of the input
+   */
+  onChange: PropTypes.func,
+  type: PropTypes.string,
+  error: PropTypes.string,
+};
 
-Actions.propTypes = {
-    /**
-     * The callback function to be called when the edit button is clicked
-     */
-    onEdit: PropTypes.func,
-    /**
-     * The callback function to be called when the delete button is clicked
-     */
-    onDelete: PropTypes.func
-}
-
-     
-
-export default Actions;</code></pre>
+export default InputText;
+</code></pre>
         </article>
     </section>
 

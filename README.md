@@ -1,24 +1,32 @@
-
-
-## Available Scripts
+# Install the dependencies
 
 In the project directory, you can run:
 
-### `npm start`
+`npm install --legacy-peer-deps`
+
+# Run the app
+
+In the project directory, run:
+
+`npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Run the tests
 
-### `npm test`
+To run the tests, run the following command:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`npm test`
 
-### `npm run build`
+# Generate the documentation
 
-To Create the documentation for the project, run the following command:
+To generate the documentation, run the following command:
 
-### `npm run docs`
+`npm run docs`
+
+# Build the app
+
+To build the app, run the following command:
+
+`npm run build`

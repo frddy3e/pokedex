@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/actions.jsx</title>
+    <title>JSDoc: Source: components/button.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/actions.jsx</h1>
+    <h1 class="page-title">Source: components/button.jsx</h1>
 
     
 
@@ -27,51 +27,59 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from "react";
-import PropTypes from "prop-types"
-import {AiOutlineEdit} from "react-icons/ai";
-import {AiTwotoneDelete} from "react-icons/ai";
-
-import ActionsStyle from "./actions.module.css";
-
+import ButtonStyle from "./button.module.css";
+import PropTypes from "prop-types";
 /**
- * Actions component: renders a list of actions buttons (Edit and Delete).
+ * The component renders a button. The button have a text, an Icon and can be disabled or enabled
  * @component
  * @example
+ * const text = "Guardar";
+ * const icon = &lt;AiOutlineSave size={20} className={ButtonStyle.icon}/>;
+ * const disabled = false;
+ * const onClick = () => {};
  * return (
- * &lt;Actions />
+ * &lt;Button text={text} icon={icon} disabled={disabled} onClick={onClick}/>
  * )
  */
-const Actions = (props) => {
-    const {onEdit, onDelete} = props;
-    return &lt;div data-testid="actions" className={ActionsStyle.actions}>
-        &lt;button onClick={onEdit} data-testid="actions-btn-edit" className={ActionsStyle.button}>
-            &lt;AiOutlineEdit size={20} className={ActionsStyle.icon}/>
-        &lt;/button>
-        &lt;button onClick={onDelete} data-testid="actions-btn-delete" className={ActionsStyle.button}>
-            &lt;AiTwotoneDelete size={20} className={ActionsStyle.icon}/>
-        &lt;/button>
+const Button = (props) => {
+  const { text, icon, disabled, onClick } = props;
+  return (
+    &lt;div
+      data-testid="button"
+      onClick={!disabled ? onClick : () => {}}
+      className={disabled ? ButtonStyle.myButtonDisabled : ButtonStyle.myButton}
+    >
+      {icon}
+      {text}
     &lt;/div>
-}
+  );
+};
 
-Actions.defaultProps = {
-    onEdit: () => {},
-    onDelete: () => {}
-}
+Button.defaultProps = {
+  disabled: false,
+};
 
-Actions.propTypes = {
-    /**
-     * The callback function to be called when the edit button is clicked
-     */
-    onEdit: PropTypes.func,
-    /**
-     * The callback function to be called when the delete button is clicked
-     */
-    onDelete: PropTypes.func
-}
+Button.propTypes = {
+  /**
+   * The text to show in the button
+   */
+  text: PropTypes.object,
+  /**
+   * The icon to show in the button
+   */
+  icon: PropTypes.object,
+  /**
+   * The function to call when the user clicks on the button
+   */
+  onClick: PropTypes.func,
+  /**
+   * The flag to indicate if the button is disabled or not
+   */
+  disabled: PropTypes.bool,
+};
 
-     
-
-export default Actions;</code></pre>
+export default Button;
+</code></pre>
         </article>
     </section>
 
